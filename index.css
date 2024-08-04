@@ -120,3 +120,8 @@ main {
     text-decoration: none;
     cursor: pointer;
 }
+
+#video-player {
+    width: 100%;
+    height: auto;
+}
