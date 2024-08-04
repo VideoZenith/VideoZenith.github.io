@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const createVideoModal = document.getElementById('create-video-modal');
     const closeBtn = document.querySelector('.close-btn');
     const publishVideoBtn = document.getElementById('publish-video-btn');
+    const videoPlayModal = document.getElementById('video-play-modal');
+    const videoPlayer = document.getElementById('video-player');
 
     // Show modal
     createVideoBtn.addEventListener('click', function() {
@@ -73,7 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
 
                 videoCard.addEventListener('click', function() {
-                    window.location.href = videoUrl;
+                    videoPlayer.src = videoUrl;
+                    videoPlayModal.style.display = 'flex';
                 });
             };
             reader.readAsDataURL(thumbnailFile);
@@ -82,6 +85,20 @@ document.addEventListener('DOMContentLoaded', function() {
             createVideoModal.style.display = 'none';
         } else {
             alert('Lütfen tüm alanları doldurun.');
+        }
+    });
+
+    // Close video play modal
+    videoPlayModal.querySelector('.close-btn').addEventListener('click', function() {
+        videoPlayModal.style.display = 'none';
+        videoPlayer.pause();
+    });
+
+    // Close video play modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target == videoPlayModal) {
+            videoPlayModal.style.display = 'none';
+            videoPlayer.pause();
         }
     });
 
